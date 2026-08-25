@@ -1,0 +1,9 @@
+{
+  "version": 2,
+  "name": "technomarket-pro",
+  "buildCommand": null,
+  "outputDirectory": ".",
+  "rewrites": [
+    { "source": "/(.*)", "destination": "/demo/index-v7.html" }
+  ]
+}

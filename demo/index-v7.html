@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>تکنومارکت | نسل نوین فروشگاه قطعات کامپیوتر</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+tailwind.config={darkMode:'class',theme:{extend:{
+  colors:{
+    ink:{DEFAULT:'#333333',2:'#4F4F4F',3:'#1f1f1f'},
+    brand:{DEFAULT:'#ef3a3a',dark:'#c92f2f'},
+    accent:{DEFAULT:'#2563eb',soft:'#3b82f6'},
+    surface:{DEFAULT:'#ffffff',muted:'#f4f4f4',line:'#e9e9ec'}
+  },
+  fontFamily:{sans:['Vazir','Tahoma','sans-serif']},
+  boxShadow:{soft:'0 1px 3px rgba(0,0,0,.05),0 10px 30px rgba(0,0,0,.06)',lift:'0 24px 60px rgba(239,58,58,.20)',card:'0 1px 4px rgba(0,0,0,.05)',glass:'0 8px 32px rgba(31,31,31,.12)'},
+  keyframes:{float:'0%,100%{transform:translateY(0)}50%{transform:translateY(-18px)}',shimmer:'0%{background-position:200% 0}100%{background-position:-200% 0}'}
+}}}
+</script>
+<style>
+@import url('https://cdn.jsdelivr.net/gh/rastikerdar/vazir-font@v30.1.0/dist/font-face.css');
+*{font-family:'Vazir',Tahoma,sans-serif}
+body{background:#f4f4f4;color:#333}
+.dark body{background:#141414;color:#e6e6e6}
+#progress{position:fixed;top:0;right:0;height:3px;width:0;z-index:200;background:linear-gradient(90deg,#333,#ef3a3a,#2563eb);transition:width .1s}
+section.shrink{transition:all .35s}
+.reveal{opacity:0;transform:translateY(34px);transition:.8s cubic-bezier(.2,.8,.2,1)}
+.reveal.in{opacity:1;transform:none}
+.hide-scroll::-webkit-scrollbar{display:none}
+/* tilt */
+.tilt{transform-style:preserve-3d;transition:transform .15s ease-out;will-change:transform}
+.tilt:hover{box-shadow:0 30px 60px rgba(0,0,0,.25)}
+.tilt .layer{transform:translateZ(40px)}
+/* magnetic btn */
+.magnetic{transition:transform .2s ease}
+/* story */
+.story-strip{display:flex;gap:14px;overflow-x:auto;padding:14px 0;scroll-behavior:smooth}
+.story{flex:0 0 auto;width:96px;text-align:center;cursor:pointer;border:0;background:none}
+.story-ring{position:relative;width:84px;height:84px;margin:0 auto 8px;border-radius:24px;padding:3px;background:linear-gradient(135deg,#333,#ef3a3a);transition:.3s}
+.story:hover .story-ring{transform:translateY(-5px) scale(1.06);box-shadow:0 14px 30px rgba(239,58,58,.30)}
+.story-ring img{width:100%;height:100%;border-radius:21px;object-fit:cover;display:block;background:#fff}
+.story-label{font-size:11.5px;color:#444;font-weight:500}
+.dark .story-label{color:#cbd5e1}
+/* mega */
+.sepahan-shop-mega-panel{position:absolute;top:100%;right:0;z-index:60;opacity:0;visibility:hidden;transform:translateY(12px);transition:.22s}
+.group-mega:hover .sepahan-shop-mega-panel{opacity:1;visibility:visible;transform:none}
+.sepahan-mega-box{width:1050px;max-width:94vw;border-radius:18px;background:#fff;box-shadow:0 30px 80px rgba(0,0,0,.20);overflow:hidden;display:flex}
+.dark .sepahan-mega-box{background:#111827}
+.sepahan-mega-tabs{width:260px;background:#f4f4f4;padding:10px;border-left:1px solid #eee}
+.dark .sepahan-mega-tabs{background:#0f172a;border-color:#1f2937}
+.sepahan-mega-tab{width:100%;display:flex;align-items:center;justify-content:space-between;padding:13px 14px;border-radius:12px;font-weight:700;font-size:13px;color:#333;cursor:pointer;transition:.2s}
+.dark .sepahan-mega-tab{color:#e2e8f0}
+.sepahan-mega-tab:hover,.sepahan-mega-tab.is-active{background:#fff;box-shadow:0 2px 8px rgba(0,0,0,.06);color:#ef3a3a;transform:translateX(-3px)}
+.dark .sepahan-mega-tab:hover,.dark .sepahan-mega-tab.is-active{background:#1f2937}
+.sepahan-mega-contents{flex:1;padding:22px;max-height:520px;overflow-y:auto}
+.sepahan-mega-content{display:none}
+.sepahan-mega-content.is-active{display:grid;grid-template-columns:repeat(4,1fr);gap:6px 26px}
+.mega-link{display:block;font-size:12.5px;color:#555;padding:8px 9px;border-radius:8px;transition:.15s}
+.mega-link:hover{background:#f4f4f4;color:#ef3a3a;padding-right:14px}
+.dark .mega-link{color:#9ca3af}.dark .mega-link:hover{background:#1f2937;color:#60a5fa}
+/* product */
+.product{transition:transform .35s cubic-bezier(.2,.8,.2,1),box-shadow .35s;border:1px solid #e9e9ec;background:#fff}
+.product:hover{transform:translateY(-7px);box-shadow:0 20px 48px rgba(0,0,0,.13);border-color:rgba(239,58,58,.35)}
+.dark .product{background:#111827;border-color:#2a3344}
+.product .quick{opacity:0;transform:translateY(10px);transition:.28s}
+.product:hover .quick{opacity:1;transform:none}
+.row-scroll{display:flex;gap:14px;overflow-x:auto;scroll-behavior:smooth;padding-bottom:6px}
+.row-scroll>.product{flex:0 0 230px}
+.cat-card{transition:.4s;overflow:hidden}.cat-card:hover{transform:translateY(-6px)}.cat-card:hover img{transform:scale(1.12)}.cat-card img{transition:transform .7s ease}
+.stock-bar{height:4px;border-radius:99px;background:#e9e9ec;overflow:hidden}
+.stock-bar>span{display:block;height:100%;background:linear-gradient(90deg,#333,#ef3a3a)}
+.dark .stock-bar{background:#2a3344}
+.arrow-btn{width:40px;height:40px;border-radius:50%;background:#fff;box-shadow:0 2px 10px rgba(0,0,0,.10);display:grid;place-items:center;cursor:pointer;transition:.2s;border:1px solid #e9e9ec}
+.arrow-btn:hover{background:#ef3a3a;color:#fff}
+header.shrink .h-main{height:60px}header.shrink .logo-mark{width:36px;height:36px}header.shrink .logo-txt{font-size:16px}
+/* 3D notify modal */
+.modal-back{position:fixed;inset:0;background:rgba(20,20,20,.55);backdrop-filter:blur(6px);z-index:300;display:none;place-items:center}
+.modal-back.show{display:grid}
+.tiltcard{background:#fff;border-radius:24px;padding:34px;text-align:center;max-width:380px;box-shadow:0 40px 90px rgba(0,0,0,.4);transform:perspective(1000px) rotateX(0) rotateY(0);transition:transform .1s}
+/* bright card shimmer */
+.shimmer{background:linear-gradient(110deg,#eee 8%,#fff 18%,#eee 33%);background-size:200% 100%;animation:shimmer 1.6s linear infinite}
+.dark .shimmer{background:linear-gradient(110deg,#1a1a1a 8%,#2a2a2a 18%,#1a1a1a 33%);background-size:200% 100%}
+</style>
+</head>
+<body class="antialiased">
+<div id="progress"></div>
+
+<!-- top utility -->
+<div class="bg-ink text-white text-[12px]">
+  <div class="max-w-7xl mx-auto px-4 py-1.5 flex items-center justify-center gap-2 flex-wrap">
+    <span>ارسال رایگان بالای ۵ میلیون</span><span class="opacity-30">|</span>
+    <span>تضمین اصالت کالا</span><span class="opacity-30">|</span>
+    <span>۷ روز بازگشت</span><span class="opacity-30">|</span>
+    <span class="font-semibold">پشتیبانی ۲۴ ساعته</span>
+  </div>
+</div>
+
+<!-- Header -->
+<header id="header" class="sticky top-0 z-40 bg-white/92 dark:bg-ink-3/92 backdrop-blur-xl border-b border-surface-line dark:border-ink">
+  <div class="h-main max-w-7xl mx-auto px-4 flex items-center gap-4">
+    <a href="#" class="flex items-center gap-2.5 shrink-0">
+      <svg class="logo-mark" viewBox="0 0 56 56" fill="none"><rect x="4" y="4" width="48" height="48" rx="13" fill="#333"/><rect x="4" y="4" width="48" height="48" rx="13" fill="url(#g)" opacity=".25"/><path d="M28 14l12 7v14l-12 7-12-7V21l12-7Z" stroke="#fff" stroke-width="2.4" fill="none" stroke-linejoin="round"/><circle cx="28" cy="28" r="5.5" fill="#ef3a3a"/><path d="M28 22.5V18M28 38v-4.5M22.5 28H18M38 28h-4.5M24 24l-3-3M35 35l-3-3M32 24l3-3M21 35l3-3" stroke="#fff" stroke-width="2" stroke-linecap="round"/><defs><linearGradient id="g" x1="4" y1="4" x2="52" y2="52"><stop stop-color="#ef3a3a"/><stop offset="1" stop-color="#2563eb"/></linearGradient></defs></svg>
+      <span class="logo-txt font-extrabold text-[19px] tracking-tight">تکنو<span class="text-brand">مارکت</span></span>
+    </a>
+    <div class="flex-1 relative max-w-2xl">
+      <input id="search" type="text" placeholder="جستجوی هوشمند محصول، برند یا مدل..." class="w-full bg-surface-muted dark:bg-ink-3 rounded-xl h-11 pr-4 pl-11 text-[13px] outline-none border border-transparent focus:border-brand/40 focus:bg-white dark:focus:bg-ink-3 focus:ring-4 focus:ring-brand/10 transition"/>
+      <svg class="w-5 h-5 absolute left-3.5 top-1/2 -translate-y-1/2 text-ink-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7" stroke-width="2"/><path stroke-width="2" stroke-linecap="round" d="m20 20-3.5-3.5"/></svg>
+      <div id="sug" class="absolute top-12 right-0 w-full bg-white dark:bg-ink-3 rounded-xl shadow-glass hidden border border-surface-line dark:border-ink z-50"></div>
+    </div>
+    <div class="flex items-center gap-1.5 shrink-0">
+      <a href="#" class="hidden md:flex items-center gap-1.5 text-[13px] font-medium px-3 h-9 rounded-lg hover:bg-surface-muted dark:hover:bg-ink-3 transition">ورود / ثبت‌نام</a>
+      <button class="relative flex items-center justify-center w-11 h-11 rounded-xl hover:bg-surface-muted dark:hover:bg-ink-3 transition">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-width="1.8" d="M3 4h2l2.2 11.2a1.5 1.5 0 0 0 1.5 1.2h8.6a1.5 1.5 0 0 0 1.5-1.2L21 8H6.2"/><circle cx="9.5" cy="20" r="1.4" fill="currentColor"/><circle cx="17.5" cy="20" r="1.4" fill="currentColor"/></svg>
+        <span class="absolute top-1 right-1 bg-brand text-white text-[10px] font-bold w-4 h-4 grid place-items-center rounded-full">۰</span>
+      </button>
+      <button id="themeBtn" class="w-11 h-11 rounded-xl hover:bg-surface-muted dark:hover:bg-ink-3 grid place-items-center">
+        <svg id="iconMoon" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-width="1.8" d="M21 12.8A9 9 0 1 1 11.2 3 7 7 0 0 0 21 12.8Z"/></svg>
+        <svg id="iconSun" class="w-5 h-5 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4" stroke-width="1.8"/><path stroke-width="1.8" d="M12 2v2M12 20v2M2 12h2M20 12h2"/></svg>
+      </button>
+    </div>
+  </div>
+  <nav class="border-t border-surface-line dark:border-ink">
+    <div class="max-w-7xl mx-auto px-4">
+      <ul class="flex gap-0.5 overflow-x-auto hide-scroll text-[13px] h-12 items-center">
+        <li class="group-mega relative">
+          <a href="#" class="flex items-center gap-1.5 px-3.5 h-12 font-bold hover:text-brand transition whitespace-nowrap"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-width="1.8" d="M4 5h16v10H4zM2 19h20"/></svg>کامپیوتر و لپ‌تاپ<svg class="w-3.5 h-3.5 opacity-50" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-width="2" d="m6 9 6 6 6-6"/></svg></a>
+          <div class="sepahan-shop-mega-panel">
+            <div class="sepahan-mega-box">
+              <div class="sepahan-mega-tabs" id="megaTabs">
+                <div class="sepahan-mega-tab is-active" data-t="0"><span>لپ‌تاپ</span><svg class="w-4 h-4 opacity-50" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-width="2" d="m9 6 6 6-6 6"/></svg></div>
+                <div class="sepahan-mega-tab" data-t="1"><span>قطعات دسکتاپ</span><svg class="w-4 h-4 opacity-50" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-width="2" d="m9 6 6 6-6 6"/></svg></div>
+                <div class="sepahan-mega-tab" data-t="2"><span>لوازم جانبی</span><svg class="w-4 h-4 opacity-50" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-width="2" d="m9 6 6 6-6 6"/></svg></div>
+                <div class="sepahan-mega-tab" data-t="3"><span>گیمینگ</span><svg class="w-4 h-4 opacity-50" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-width="2" d="m9 6 6 6-6 6"/></svg></div>
+              </div>
+              <div class="sepahan-mega-contents">
+                <div class="sepahan-mega-content is-active" data-c="0"><a href="#" class="mega-link">لپ‌تاپ گیمینگ</a><a href="#" class="mega-link">اولترابوک</a><a href="#" class="mega-link">لپ‌تاپ اداری</a><a href="#" class="mega-link">لپ‌تاپ دانشجویی</a><a href="#" class="mega-link">ایسوس</a><a href="#" class="mega-link">ایسر</a><a href="#" class="mega-link">لنوو</a><a href="#" class="mega-link">اچ‌پی</a></div>
+                <div class="sepahan-mega-content" data-c="1"><a href="#" class="mega-link">مادربرد</a><a href="#" class="mega-link">پردازنده</a><a href="#" class="mega-link">کارت گرافیک</a><a href="#" class="mega-link">رم DDR4</a><a href="#" class="mega-link">رم DDR5</a><a href="#" class="mega-link">هارد SSD</a><a href="#" class="mega-link">هارد HDD</a><a href="#" class="mega-link">پاور</a></div>
+                <div class="sepahan-mega-content" data-c="2"><a href="#" class="mega-link">کیس کامپیوتر</a><a href="#" class="mega-link">مانیتور</a><a href="#" class="mega-link">کیبورد</a><a href="#" class="mega-link">ماوس</a><a href="#" class="mega-link">هدست</a><a href="#" class="mega-link">وب‌کم</a><a href="#" class="mega-link">کولر آبی</a><a href="#" class="mega-link">کابل و مبدل</a></div>
+                <div class="sepahan-mega-content" data-c="3"><a href="#" class="mega-link">صندلی گیمینگ</a><a href="#" class="mega-link">کنسول بازی</a><a href="#" class="mega-link">هدست گیمینگ</a><a href="#" class="mega-link">ماوس‌پد RGB</a><a href="#" class="mega-link">کیبورد مکانیکی</a><a href="#" class="mega-link">نورپردازی RGB</a><a href="#" class="mega-link">موس گیمینگ</a><a href="#" class="mega-link">میکروفون</a></div>
+              </div>
+            </div>
+          </div>
+        </li>
+        <li><a href="#" class="flex items-center gap-1.5 px-3.5 h-12 hover:text-brand transition whitespace-nowrap"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-width="1.8" d="M7 4v16M17 4v16M7 8h10M7 16h10"/></svg>گیمینگ</a></li>
+        <li><a href="#" class="flex items-center gap-1.5 px-3.5 h-12 hover:text-brand transition whitespace-nowrap"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-width="1.8" d="M5 12a7 7 0 0 1 14 0v6a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2Z"/><path stroke-width="1.8" d="M12 5V2"/></svg>شبکه</a></li>
+        <li><a href="#" class="flex items-center gap-1.5 px-3.5 h-12 hover:text-brand transition whitespace-nowrap"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><rect x="6" y="2" width="12" height="20" rx="2" stroke-width="1.8"/><path stroke-width="1.8" d="M11 18h2"/></svg>موبایل</a></li>
+        <li><a href="#" class="flex items-center gap-1.5 px-3.5 h-12 hover:text-brand transition whitespace-nowrap"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-width="1.8" d="M3 10v4M7 7v10M11 4v16M15 8v8M19 11v2"/></svg>صوتی</a></li>
+        <li><a href="#" class="flex items-center gap-1.5 px-3.5 h-12 hover:text-brand transition whitespace-nowrap"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-width="1.8" d="M4 6h16v12H4zM8 10h.01M12 10h.01M16 10h.01"/></svg>وبلاگ</a></li>
+        <li><a href="#" class="flex items-center gap-1.5 px-3.5 h-12 hover:text-brand transition whitespace-nowrap"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-width="1.8" d="M4 4h16v12H7l-3 3V4Z"/></svg>تماس</a></li>
+      </ul>
+    </div>
+  </nav>
+</header>
+
+<!-- Stories -->
+<div class="bg-white dark:bg-ink-3 border-b border-surface-line dark:border-ink">
+  <div class="max-w-7xl mx-auto px-4"><div class="story-strip" id="storyStrip"></div></div>
+</div>
+
+<!-- Hero -->
+<section class="max-w-7xl mx-auto px-4 pt-6">
+  <div id="hero" class="rounded-3xl overflow-hidden relative text-white px-8 sm:px-16 py-14 sm:py-20 flex items-center justify-between" style="background:radial-gradient(900px 500px at 85% 10%,rgba(37,99,235,.32),transparent 60%),radial-gradient(700px 500px at 10% 90%,rgba(239,58,58,.30),transparent 60%),linear-gradient(135deg,#333 0%,#4F4F4F 55%,#ef3a3a 150%)">
+    <div class="max-w-xl relative z-10">
+      <span class="inline-block text-[12px] font-semibold tracking-widest uppercase text-red-100 bg-white/10 px-3 py-1 rounded-full mb-5">نسل نوین خرید هوشمند</span>
+      <h1 id="heroTitle" class="text-4xl sm:text-6xl font-extrabold leading-[1.1] mb-5">خلق شاهکارهای<br/>سخت‌افزاری مدرن</h1>
+      <p id="heroSub" class="text-[14px] sm:text-[16px] text-white/75 mb-8 max-w-md leading-8">عرضه تخصصی قطعات با گارانتی معتبر، ارسال سریع و بهترین قیمت بازار.</p>
+      <div class="flex gap-3 flex-wrap">
+        <a href="#" id="ctaBtn" class="magnetic bg-white text-ink font-bold rounded-xl px-7 py-3.5 text-[14px] hover:scale-105 transition">ارتقای سیستم</a>
+        <a href="#" class="border border-white/30 rounded-xl px-7 py-3.5 text-[14px] font-medium hover:bg-white/10 transition">پرفروش‌ترین‌ها</a>
+      </div>
+    </div>
+    <div class="hidden lg:block relative z-10 w-[420px]">
+      <div class="tilt" id="heroTilt">
+        <img id="heroImg" src="https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=700&q=75" class="rounded-2xl shadow-2xl layer" alt=""/>
+        <div class="absolute -bottom-6 -left-6 bg-white text-ink rounded-2xl shadow-lift p-4 layer" style="animation:float 6s ease-in-out infinite"><p class="text-[11px] text-ink-2">تخفیف تا</p><p class="text-2xl font-extrabold text-brand">۳۰٪</p></div>
+        <div class="absolute -top-6 -right-4 bg-accent text-white rounded-2xl shadow-lift p-4 layer" style="animation:float 6s ease-in-out infinite;animation-delay:.8s"><p class="text-[11px] opacity-80">ارسال</p><p class="text-lg font-bold">فوری</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Categories -->
+<section class="max-w-7xl mx-auto px-4 py-8">
+  <div class="flex items-center justify-between mb-4 reveal"><h2 class="text-[19px] font-extrabold tracking-tight">دسته‌بندی محبوب</h2><a href="#" class="text-[13px] text-ink-2 hover:text-brand transition">مشاهده همه</a></div>
+  <div class="grid grid-cols-3 sm:grid-cols-4 lg:grid-cols-8 gap-3" id="catGrid"></div>
+</section>
+
+<!-- Best sellers -->
+<section class="max-w-7xl mx-auto px-4 py-4">
+  <div class="flex items-center justify-between mb-4 reveal">
+    <div class="flex items-center gap-2"><span class="w-1.5 h-6 bg-brand rounded-full"></span><h2 class="text-[19px] font-extrabold tracking-tight">پرفروش‌ترین‌ها</h2></div>
+    <div class="flex gap-2"><button class="arrow-btn" onclick="scrollRow('best',-1)">▶</button><button class="arrow-btn" onclick="scrollRow('best',1)">◀</button></div>
+  </div>
+  <div class="row-scroll" id="best"></div>
+</section>
+
+<!-- New -->
+<section class="max-w-7xl mx-auto px-4 py-4">
+  <div class="flex items-center justify-between mb-4 reveal">
+    <div class="flex items-center gap-2"><span class="w-1.5 h-6 bg-accent rounded-full"></span><h2 class="text-[19px] font-extrabold tracking-tight">تازه‌ترین محصولات</h2></div>
+    <div class="flex gap-2"><button class="arrow-btn" onclick="scrollRow('new',-1)">▶</button><button class="arrow-btn" onclick="scrollRow('new',1)">◀</button></div>
+  </div>
+  <div class="row-scroll" id="new"></div>
+</section>
+
+<!-- Flash / amazing -->
+<section class="max-w-7xl mx-auto px-4 py-8">
+  <div class="reveal bg-gradient-to-l from-ink to-ink-2 rounded-3xl p-6 sm:p-8 text-white flex flex-col md:flex-row items-center gap-6">
+    <div class="flex items-center gap-4"><span class="w-14 h-14 rounded-2xl bg-white/15 grid place-items-center"><svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-width="2" stroke-linecap="round" d="M13 2 4 14h7l-1 8 9-12h-7l1-8Z"/></svg></span><div><h3 class="text-xl font-extrabold">پیشنهاد شگفت‌انگیز</h3><p class="text-[12.5px] text-white/80">تا پایان زمان باقی‌مانده</p></div></div>
+    <div class="flex items-center gap-2 text-2xl font-mono font-bold bg-black/25 rounded-2xl px-5 py-3"><span id="cd-h">۰۲</span>:<span id="cd-m">۱۵</span>:<span id="cd-s">هایی</span></div>
+    <div class="flex-1 w-full"><div class="flex justify-between text-[12px] mb-1.5"><span>فروش رفته</span><span>۷۸٪</span></div><div class="stock-bar"><span style="width:78%"></span></div></div>
+    <a href="#" class="bg-white text-ink font-bold rounded-xl px-6 py-3 text-[14px] hover:scale-105 transition whitespace-nowrap">خرید سریع</a>
+  </div>
+</section>
+
+<!-- Why us -->
+<section class="max-w-7xl mx-auto px-4 py-6">
+  <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+    <div class="reveal flex items-center gap-3 bg-white dark:bg-ink-3 rounded-2xl shadow-card p-4 border border-surface-line dark:border-ink"><span class="w-11 h-11 rounded-xl bg-brand/10 text-brand grid place-items-center shrink-0"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-width="1.8" d="M12 2 4 6v6c0 5 3.4 8.5 8 10 4.6-1.5 8-5 8-10V6l-8-4Z"/><path stroke-width="1.8" d="m9 12 2 2 4-4"/></svg></span><div><p class="text-[13px] font-bold">ضمانت اصالت</p><p class="text-[11px] text-ink-2">کالای اورجینال</p></div></div>
+    <div class="reveal flex items-center gap-3 bg-white dark:bg-ink-3 rounded-2xl shadow-card p-4 border border-surface-line dark:border-ink" style="transition-delay:.08s"><span class="w-11 h-11 rounded-xl bg-brand/10 text-brand grid place-items-center shrink-0"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-width="1.8" d="M3 7h13v10H3zM16 10h3l2 3v4h-5"/></svg></span><div><p class="text-[13px] font-bold">ارسال سریع</p><p class="text-[11px] text-ink-2">۲۴ ساعته</p></div></div>
+    <div class="reveal flex items-center gap-3 bg-white dark:bg-ink-3 rounded-2xl shadow-card p-4 border border-surface-line dark:border-ink" style="transition-delay:.16s"><span class="w-11 h-11 rounded-xl bg-brand/10 text-brand grid place-items-center shrink-0"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-width="1.8" d="M12 8v4l3 2"/><circle cx="12" cy="12" r="9"/></svg></span><div><p class="text-[13px] font-bold">پشتیبانی ۲۴/۷</p><p class="text-[11px] text-ink-2">مشاوره تخصصی</p></div></div>
+    <div class="reveal flex items-center gap-3 bg-white dark:bg-ink-3 rounded-2xl shadow-card p-4 border border-surface-line dark:border-ink" style="transition-delay:.24s"><span class="w-11 h-11 rounded-xl bg-brand/10 text-brand grid place-items-center shrink-0"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-width="1.8" d="M21 12a9 9 0 1 1-9-9"/><path stroke-width="1.8" d="M21 4v5h-5"/></svg></span><div><p class="text-[13px] font-bold">بازگشت آسان</p><p class="text-[11px] text-ink-2">۷ روز ضمانت</p></div></div>
+  </div>
+</section>
+
+<!-- Newsletter -->
+<section class="max-w-7xl mx-auto px-4 py-8">
+  <div class="reveal bg-gradient-to-r from-accent to-brand rounded-3xl p-8 text-white flex flex-col md:flex-row items-center gap-6">
+    <div class="flex-1"><h3 class="text-2xl font-extrabold mb-2">اولین نفر باش در تخفیف‌ها</h3><p class="text-white/80 text-[13px]">با عضویت در خبرنامه، از جدیدترین محصولات و شگفت‌انگیزها با‌خبر شو.</p></div>
+    <div class="flex w-full md:w-auto gap-2"><input type="email" placeholder="ایمیل شما" class="flex-1 md:w-64 h-12 rounded-xl px-4 text-ink text-[13px] outline-none"/><button class="bg-white text-ink font-bold rounded-xl px-6 h-12 text-[13px] hover:scale-105 transition">عضویت</button></div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="bg-ink text-gray-300 text-[13px] mt-8">
+  <div class="max-w-7xl mx-auto px-4 py-12 grid grid-cols-2 md:grid-cols-4 gap-8">
+    <div><div class="flex items-center gap-2 mb-4"><svg class="w-8 h-8" viewBox="0 0 56 56" fill="none"><rect x="4" y="4" width="48" height="48" rx="13" fill="#ef3a3a"/><path d="M28 14l12 7v14l-12 7-12-7V21l12-7Z" stroke="#fff" stroke-width="2.4" fill="none" stroke-linejoin="round"/><circle cx="28" cy="28" r="5.5" fill="#fff"/></svg><span class="font-extrabold text-white text-[17px]">تکنومارکت</span></div><p class="text-gray-400 leading-7 text-[12.5px]">فروشگاه تخصصی قطعات کامپیوتر، لپ‌تاپ و لوازم جانبی با بهترین قیمت و گارانتی معتبر.</p></div>
+    <div><h4 class="text-white font-bold mb-4 text-[14px]">راهنمای خرید</h4><ul class="space-y-2 text-[12.5px] text-gray-400"><li><a href="#" class="hover:text-brand transition">نحوه ثبت سفارش</a></li><li><a href="#" class="hover:text-brand transition">رویه ارسال</a></li><li><a href="#" class="hover:text-brand transition">شرایط بازگشت</a></li><li><a href="#" class="hover:text-brand transition">سوالات متداول</a></li></ul></div>
+    <div><h4 class="text-white font-bold mb-4 text-[14px]">خدمات مشتریان</h4><ul class="space-y-2 text-[12.5px] text-gray-400"><li><a href="#" class="hover:text-brand transition">پیگیری سفارش</a></li><li><a href="#" class="hover:text-brand transition">تماس با ما</a></li><li><a href="#" class="hover:text-brand transition">گارانتی</a></li><li><a href="#" class="hover:text-brand transition">نمایندگی‌ها</a></li></ul></div>
+    <div><h4 class="text-white font-bold mb-4 text-[14px]">تماس با ما</h4><p class="text-gray-400 text-[12.5px] leading-7">تهران، خیابان آزادی<br/>تلفن: ۰۲۱-۱۲۳۴۵۶۷۸<br/>پشتیبانی ۲۴ ساعته</p><p class="text-gray-500 text-[12px] mt-4">اینستاگرام · تلگرام · آپارات</p></div>
+  </div>
+  <div class="border-t border-white/10 text-center text-gray-500 text-[12px] py-5">© ۱۴۰۴ تکنومارکت — تمامی حقوق محفوظ است.</div>
+</footer>
+
+<!-- 3D notify modal -->
+<div class="modal-back" id="modalBack"><div class="tiltcard" id="tiltCard">
+  <div class="w-16 h-16 mx-auto mb-4 rounded-2xl bg-brand grid place-items-center text-white text-3xl font-black">٪</div>
+  <h3 class="text-lg font-extrabold text-ink dark:text-white mb-1">کد تخفیف ویژه‌ات آماده‌ست</h3>
+  <p class="text-[13px] text-ink-2 dark:text-gray-400 mb-4">با عضویت، ۱۵٪ تخفیف اولین خریدت رو بگیر</p>
+  <div class="bg-surface-muted dark:bg-ink-3 rounded-xl py-3 font-mono font-bold text-brand text-lg tracking-widest mb-4">TECH15</div>
+  <button onclick="closeModal()" class="bg-ink text-white rounded-xl px-6 py-2.5 text-[13px] font-semibold w-full hover:bg-brand transition">استفاده و ادامه</button>
+</div></div>
+
+<script>
+/* STORIES */
+const storyData=[
+  {img:'cat_laptop.jpg',t:'لپ‌تاپ'},{img:'cat_gpu.jpg',t:'گرافیک'},{img:'cat_cpu.jpg',t:'پردازنده'},{img:'cat_monitor.jpg',t:'مانیتور'},{img:'cat_keyboard.jpg',t:'کیبورد'},{img:'cat_case.jpg',t:'کیس'},{img:'cat_headphone.jpg',t:'هدست'},{img:'cat_ram.jpg',t:'رم'},{img:'cat_ssd.jpg',t:'اس‌اس‌دی'},{img:'cat_network.jpg',t:'شبکه'},{img:'cat_mouse.jpg',t:'ماوس'},{img:'cat_pad.jpg',t:'ماوس‌پد'}
+];
+document.getElementById('storyStrip').innerHTML=storyData.map(s=>`<button class="story" onclick="openStory('${s.t}')"><span class="story-ring"><img src="${s.img}" alt="${s.t}" onerror="this.style.display='none'"></span><span class="story-label">${s.t}</span></button>`).join('');
+
+/* products */
+const products=[
+  {id:1,n:'لپ‌تاپ ASUS Vivobook 15 Core 5',p:'۲۸,۹۰۰,۰۰۰',o:'۳۴,۹۰۰,۰۰۰',b:'ASUS',img:'cat_laptop.jpg',off:'۱۷٪'},
+  {id:2,n:'کیس COOLER MASTER Sneaker X',p:'۱۲,۵۰۰,۰۰۰',o:'',b:'Cooler Master',img:'cat_case.jpg',off:''},
+  {id:3,n:'کارت گرافیک GIGABYTE RTX 4060',p:'۱۸,۳۰۰,۰۰۰',o:'',b:'GIGABYTE',img:'cat_gpu.jpg',off:''},
+  {id:4,n:'مانیتور ANTGAMER 27 اینچ 4K',p:'۹,۸۰۰,۰۰۰',o:'۱۱,۲۰۰,۰۰۰',b:'ANTGAMER',img:'cat_monitor.jpg',off:'۱۳٪'},
+  {id:5,n:'رم Kingston 16GB DDR5',p:'۳,۴۰۰,۰۰۰',o:'',b:'Kingston',img:'cat_ram.jpg',off:''},
+  {id:6,n:'هارد SSD Samsung 990 Pro 1TB',p:'۲۱,۸۷۴,۱۰۴',o:'',b:'Samsung',img:'cat_ssd.jpg',off:''},
+  {id:7,n:'پردازنده Intel Core i5-13400F',p:'۷,۹۰۰,۰۰۰',o:'',b:'Intel',img:'cat_cpu.jpg',off:''},
+  {id:8,n:'کیبورد REDRAGON K521 مکانیکی',p:'۱,۶۵۰,۰۰۰',o:'۲,۱۰۰,۰۰۰',b:'REDRAGON',img:'cat_keyboard.jpg',off:'۲۱٪'},
+  {id:9,n:'لپ‌تاپ Lenovo IdeaPad 5',p:'۲۴,۵۰۰,۰۰۰',o:'',b:'Lenovo',img:'cat_laptop.jpg',off:''},
+  {id:10,n:'هدست HyperX Cloud II',p:'۲,۲۰۰,۰۰۰',o:'۲,۹۰۰,۰۰۰',b:'HyperX',img:'cat_headphone.jpg',off:'۲۴٪'}
+];
+const stars=r=>'★'.repeat(Math.round(r))+'☆'.repeat(5-Math.round(r));
+function cardHTML(pr){
+  return `<div class="product bg-white dark:bg-ink-3 rounded-2xl shadow-card overflow-hidden group relative">
+    ${pr.off?`<span class="absolute top-3 right-3 z-10 bg-brand text-white text-[11px] font-bold px-2 py-1 rounded-md">${pr.off}</span>`:''}
+    <div class="absolute top-3 left-3 z-10 flex flex-col gap-1.5 quick">
+      <button class="w-8 h-8 rounded-full bg-white dark:bg-ink-3 shadow-card grid place-items-center text-ink-2 hover:text-brand" title="علاقه‌مندی"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-width="1.8" d="M12 20s-7-4.3-7-9.5A3.5 3.5 0 0 1 12 7a3.5 3.5 0 0 1 7 3.5C19 15.7 12 20 12 20Z"/></svg></button>
+      <button class="w-8 h-8 rounded-full bg-white dark:bg-ink-3 shadow-card grid place-items-center text-ink-2 hover:text-accent" title="مقایسه"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-width="1.8" d="M8 3v14M8 3 5 6m3-3 3 3M16 21V7m0 14 3-3m-3 3-3-3"/></svg></button>
+      <button class="w-8 h-8 rounded-full bg-white dark:bg-ink-3 shadow-card grid place-items-center text-ink-2 hover:text-accent" title="مشاهده سریع" onclick="openModal()"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-width="1.8" d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12Z"/><circle cx="12" cy="12" r="3"/></svg></button>
+    </div>
+    <div class="aspect-square bg-surface-muted dark:bg-ink grid place-items-center overflow-hidden"><img src="${pr.img}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" onerror="this.style.display='none';this.parentElement.innerHTML='<div class=\'w-24 h-24 rounded-2xl bg-gradient-to-br from-surface-line to-white dark:from-ink grid place-items-center text-ink-2 font-black text-2xl\'>${pr.b[0]}</div>'" alt=""/></div>
+    <div class="p-3.5"><div class="flex items-center justify-between"><span class="text-[10.5px] font-medium text-ink-2 uppercase tracking-wide">${pr.b}</span><span class="text-[11px] text-amber-500">${stars(4.6)}</span></div>
+      <h3 class="text-[12.5px] font-medium leading-5 mt-1 h-10 overflow-hidden text-ink dark:text-gray-100">${pr.n}</h3>
+      <div class="stock-bar mt-2"><span style="width:${70+Math.random()*25}%"></span></div>
+      <div class="flex items-end justify-between mt-2"><span class="text-brand font-extrabold text-[15px]">${pr.p}<span class="text-[10px] font-normal text-ink-2 mr-1">تومان</span></span>${pr.o?`<span class="text-[11px] text-ink-2 line-through">${pr.o}</span>`:''}</div>
+      <button class="w-full mt-3 bg-surface-muted dark:bg-ink hover:bg-ink hover:text-white dark:hover:bg-brand rounded-xl py-2.5 text-[12.5px] font-semibold transition">افزودن به سبد</button>
+    </div></div>`;
+}
+document.getElementById('best').innerHTML=products.slice(0,6).map(cardHTML).join('');
+document.getElementById('new').innerHTML=products.slice(4).map(cardHTML).join('');
+
+/* categories */
+const cats=[
+  {img:'cat_laptop.jpg',t:'لپ‌تاپ'},{img:'cat_gpu.jpg',t:'گرافیک'},{img:'cat_cpu.jpg',t:'پردازنده'},{img:'cat_monitor.jpg',t:'مانیتور'},{img:'cat_keyboard.jpg',t:'کیبورد'},{img:'cat_case.jpg',t:'کیس'},{img:'cat_headphone.jpg',t:'هدست'},{img:'cat_ram.jpg',t:'رم'}
+];
+document.getElementById('catGrid').innerHTML=cats.map(c=>`<a href="#" class="cat-card bg-white dark:bg-ink-3 rounded-2xl shadow-card overflow-hidden border border-surface-line dark:border-ink"><div class="h-20 overflow-hidden"><img src="${c.img}" class="w-full h-full object-cover" onerror="this.style.display='none'"></div><p class="text-center text-[12px] font-medium py-2.5">${c.t}</p></a>`).join('');
+
+/* reveal */
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('in')}),{threshold:.1});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+/* theme */
+const root=document.documentElement;
+function setTheme(t){root.classList.toggle('dark',t==='dark');localStorage.theme=t;document.getElementById('iconMoon').classList.toggle('hidden',t==='dark');document.getElementById('iconSun').classList.toggle('hidden',t!=='dark');}
+setTheme(localStorage.theme||'light');
+document.getElementById('themeBtn').onclick=()=>setTheme(root.classList.contains('dark')?'light':'dark');
+
+/* scroll progress + shrink */
+const header=document.getElementById('header');
+addEventListener('scroll',()=>{const h=document.documentElement.scrollTop;document.getElementById('progress').style.width=(h/document.documentElement.scrollHeight*100)+'%';header.classList.toggle('shrink',h>40);});
+
+/* countdown */
+let total=2*3600+15*60+49;
+setInterval(()=>{total--;if(total<0)total=0;const h=String(Math.floor(total/3600)).padStart(2,'0');const m=String(Math.floor(total%3600/60)).padStart(2,'0');const s=String(total%60).padStart(2,'0');document.getElementById('cd-h').textContent=Number(h).toLocaleString('fa-IR');document.getElementById('cd-m').textContent=Number(m).toLocaleString('fa-IR');document.getElementById('cd-s').textContent=Number(s).toLocaleString('fa-IR');},1000);
+
+/* mega tabs */
+document.querySelectorAll('#megaTabs .sepahan-mega-tab').forEach(tab=>tab.onclick=()=>{
+  document.querySelectorAll('#megaTabs .sepahan-mega-tab').forEach(t=>t.classList.remove('is-active'));
+  document.querySelectorAll('.sepahan-mega-content').forEach(c=>c.classList.remove('is-active'));
+  tab.classList.add('is-active');
+  document.querySelector(`.sepahan-mega-content[data-c="${tab.dataset.t}"]`).classList.add('is-active');
+});
+
+/* horizontal scroll */
+function scrollRow(id,dir){document.getElementById(id).scrollBy({left:dir*260,behavior:'smooth'});}
+
+/* 3D tilt hero */
+const heroTilt=document.getElementById('heroTilt');
+document.getElementById('hero').addEventListener('mousemove',e=>{
+  const r=heroTilt.getBoundingClientRect();const x=e.clientX-r.left-r.width/2;const y=e.clientY-r.top-r.height/2;
+  heroTilt.style.transform=`perspective(1000px) rotateY(${x/22}deg) rotateX(${-y/22}deg) translateZ(10px)`;
+});
+document.getElementById('hero').addEventListener('mouseleave',()=>heroTilt.style.transform='');
+
+/* magnetic cta */
+const cta=document.getElementById('ctaBtn');
+cta.addEventListener('mousemove',e=>{const r=cta.getBoundingClientRect();const x=e.clientX-r.left-r.width/2;const y=e.clientY-r.top-r.height/2;cta.style.transform=`translate(${x/6}px,${y/6}px)`;});
+cta.addEventListener('mouseleave',()=>cta.style.transform='');
+
+/* smart search suggestions */
+const Q=['لپ‌تاپ گیمینگ','کارت گرافیک RTX','مادربرد ایسوس','رم DDR5','مانیتور 4K','پردازنده اینتل','کیبورد مکانیکی','هدست بی‌سیم','کیس گیمینگ','هارد SSD سامسونگ'];
+const search=document.getElementById('search'),sug=document.getElementById('sug');
+search.addEventListener('input',()=>{const v=search.value.trim();if(!v){sug.classList.add('hidden');return;}
+  sug.innerHTML=Q.filter(q=>q.includes(v)).slice(0,6).map(q=>`<a href="#" class="block px-4 py-2.5 text-[13px] hover:bg-surface-muted dark:hover:bg-ink-3 text-ink dark:text-gray-200">${q}</a>`).join('')||`<div class="px-4 py-2.5 text-[13px] text-ink-2">موردی یافت نشد</div>`;
+  sug.classList.remove('hidden');});
+search.addEventListener('blur',()=>setTimeout(()=>sug.classList.add('hidden'),200));
+
+/* modal */
+function openModal(){document.getElementById('modalBack').classList.add('show');}
+function closeModal(){document.getElementById('modalBack').classList.remove('show');}
+const tiltCard=document.getElementById('tiltCard');
+document.getElementById('modalBack').addEventListener('mousemove',e=>{const r=tiltCard.getBoundingClientRect();const x=e.clientX-r.left-r.width/2;const y=e.clientY-r.top-r.height/2;tiltCard.style.transform=`perspective(900px) rotateY(${x/30}deg) rotateX(${-y/30}deg)`;});
+document.getElementById('modalBack').addEventListener('mouseleave',()=>tiltCard.style.transform='');
+/* auto-open once */
+setTimeout(()=>{if(!localStorage.modalShown){openModal();localStorage.modalShown='1';}},3500);
+function openStory(t){alert('استوری: '+t+' — اینجا ویدیو/محتوای دسته باز می‌شه');}
+</script>
+</body>
+</html>
