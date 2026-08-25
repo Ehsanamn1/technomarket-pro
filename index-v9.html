@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>فرتاک | فروشگاه تخصصی قطعات کامپیوتر و لپ‌تاپ</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+tailwind.config={darkMode:'class',theme:{extend:{
+  colors:{
+    ink:{DEFAULT:'#23272e',2:'#3a4049',3:'#161a1f'},
+    brand:{DEFAULT:'#e23b3b',hover:'#c5302f',soft:'#fdecec'},
+    accent:{DEFAULT:'#2563eb',hover:'#1d4fd0',soft:'#eaf1ff'},
+    bg:{DEFAULT:'#f6f7f9',secondary:'#eef0f3',surface:'#ffffff'},
+    txt:{DEFAULT:'#23272e',secondary:'#5b6470',muted:'#8b94a3',disabled:'#b8bec8'},
+    line:{DEFAULT:'#e6e8ec',strong:'#d3d7de'},
+    success:'#16a34a',warning:'#d97706',danger:'#dc2626',info:'#2563eb'
+  },
+  fontFamily:{sans:['Vazir','Tahoma','sans-serif']},
+  borderRadius:{sm:'8px',md:'12px',lg:'16px',xl:'20px',pill:'999px'},
+  boxShadow:{
+    '1':'0 1px 2px rgba(16,24,40,.04),0 1px 3px rgba(16,24,40,.06)',
+    '2':'0 10px 30px rgba(16,24,40,.10)',
+    '3':'0 20px 60px rgba(16,24,40,.18)'
+  },
+  maxWidth:{content:'1320px'},
+  transitionDuration:{'fast':'150ms','mid':'250ms','slow':'400ms'}
+}}}
+</script>
+<style>
+@import url('https://cdn.jsdelivr.net/gh/rastikerdar/vazir-font@v30.1.0/dist/font-face.css');
+:root{
+  --c-primary:#23272e;--c-primary-hover:#3a4049;
+  --c-accent:#2563eb;--c-brand:#e23b3b;
+  --c-bg:#f6f7f9;--c-surface:#fff;--c-line:#e6e8ec;
+  --c-txt:#23272e;--c-txt2:#5b6470;--c-muted:#8b94a3;
+  --r-sm:8px;--r-md:12px;--r-lg:16px;--r-xl:20px;--r-pill:999px;
+  --s-1:8px;--s-2:12px;--s-3:16px;--s-4:24px;--s-5:32px;--s-section:72px;
+  --sh-1:0 1px 2px rgba(16,24,40,.04),0 1px 3px rgba(16,24,40,.06);
+  --sh-2:0 10px 30px rgba(16,24,40,.10);
+  --sh-3:0 20px 60px rgba(16,24,40,.18);
+}
+*{font-family:'Vazir',Tahoma,sans-serif;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--c-bg);color:var(--c-txt);margin:0;-webkit-font-smoothing:antialiased;font-size:14px;line-height:1.6}
+.dark body{background:#11141a;color:#e7eaef}
+a{text-decoration:none;color:inherit}
+.container{max-width:1320px;margin:0 auto;padding:0 20px}
+:focus-visible{outline:2px solid var(--c-accent);outline-offset:2px}
+.hide-scroll::-webkit-scrollbar{display:none}
+.reveal{opacity:0;transform:translateY(24px);transition:.6s cubic-bezier(.2,.8,.2,1)}
+.reveal.in{opacity:1;transform:none}
+/* progress */
+#progress{position:fixed;top:0;right:0;height:3px;width:0;z-index:300;background:linear-gradient(90deg,var(--c-primary),var(--c-brand),var(--c-accent));transition:width .12s}
+
+/* ===== HEADER ===== */
+.utility{background:var(--c-primary);color:#cfd4dc;font-size:12px}
+.utility a:hover{color:#fff}
+.head-main{background:var(--c-surface);border-bottom:1px solid var(--c-line);position:sticky;top:0;z-index:50;transition:box-shadow .25s,transform .25s}
+.head-main.shrink{box-shadow:var(--sh-1)}
+.d-head .logo{transition:.25s}
+.search-wrap{position:relative;flex:1;max-width:620px}
+.search-input{width:100%;height:46px;background:var(--c-bg);border:1px solid var(--c-line);border-radius:var(--r-pill);padding:0 46px 0 18px;font-size:13.5px;transition:.2s}
+.search-input:focus{background:#fff;border-color:var(--c-brand);box-shadow:0 0 0 4px rgba(226,59,59,.10)}
+.search-clear{position:absolute;left:14px;top:50%;transform:translateY(-50%);color:var(--c-txt2);cursor:pointer;display:none}
+.search-panel{position:absolute;top:56px;right:0;width:min(440px,92vw);background:#fff;border:1px solid var(--c-line);border-radius:var(--r-lg);box-shadow:var(--sh-2);z-index:80;display:none;overflow:hidden;animation:pop .18s ease}
+@keyframes pop{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:none}}
+.sp-sec{font-size:11.5px;font-weight:700;color:var(--c-muted);padding:14px 18px 6px}
+.sp-item{display:flex;align-items:center;gap:10px;padding:9px 18px;font-size:13px;transition:.12s}
+.sp-item:hover{background:var(--c-bg)}
+.sp-chip{font-size:12px;padding:6px 12px;border-radius:var(--r-pill);background:var(--c-bg);color:var(--c-txt2);transition:.15s}
+.sp-chip:hover{background:var(--c-brand);color:#fff}
+.icon-btn{width:42px;height:42px;border-radius:var(--r-md);display:grid;place-items:center;transition:.2s;position:relative}
+.icon-btn:hover{background:var(--c-bg)}
+.badge-count{position:absolute;top:-2px;right:-2px;min-width:18px;height:18px;padding:0 4px;background:var(--c-brand);color:#fff;font-size:10px;font-weight:700;border-radius:var(--r-pill);display:grid;place-items:center}
+.badge-count.accent{background:var(--c-accent)}
+
+/* NAV */
+.navbar{background:var(--c-surface);border-bottom:1px solid var(--c-line)}
+.nav-link{position:relative;font-size:13.5px;font-weight:600;color:var(--c-txt);padding:0 14px;height:50px;display:flex;align-items:center;gap:5px;white-space:nowrap;transition:.18s}
+.nav-link:hover,.nav-link.active{color:var(--c-brand)}
+.nav-link::after{content:'';position:absolute;bottom:0;right:14px;left:14px;height:2.5px;background:var(--c-brand);transform:scaleX(0);transition:.22s;transform-origin:right}
+.nav-link:hover::after,.nav-link.active::after{transform:scaleX(1)}
+.nav-link.promo{color:var(--c-brand)}
+
+/* MEGA */
+.mega{position:absolute;top:100%;right:0;z-index:60;opacity:0;visibility:hidden;transform:translateY(12px);transition:.2s ease}
+.has-mega:hover .mega,.has-mega.open .mega{opacity:1;visibility:visible;transform:none}
+.mega-box{width:1040px;max-width:94vw;background:#fff;border-radius:var(--r-lg);box-shadow:var(--sh-3);overflow:hidden;display:flex}
+.dark .mega-box{background:#11141a;border:1px solid #222}
+.mega-tabs{width:225px;background:var(--c-bg);padding:12px;border-left:1px solid var(--c-line)}
+.dark .mega-tabs{background:#0d1014;border-color:#222}
+.mega-tab{width:100%;display:flex;align-items:center;justify-content:space-between;padding:11px 13px;border-radius:var(--r-md);font-weight:700;font-size:12.5px;cursor:pointer;transition:.18s}
+.mega-tab:hover,.mega-tab.is-active{background:#fff;box-shadow:var(--sh-1);color:var(--c-brand)}
+.dark .mega-tab:hover,.dark .mega-tab.is-active{background:#1a1e26}
+.mega-col{flex:1;padding:22px;max-height:520px;overflow:auto}
+.mega-grid{display:none}.mega-grid.is-active{display:grid;grid-template-columns:repeat(3,1fr);gap:2px 20px}
+.mega-link{display:block;font-size:12.5px;color:var(--c-txt2);padding:7px 10px;border-radius:var(--r-sm);transition:.15s}
+.mega-link:hover{background:var(--c-bg);color:var(--c-brand)}
+.mega-sub{font-size:11px;color:var(--c-muted);font-weight:600;padding:6px 10px 2px}
+.mega-feat{width:240px;background:linear-gradient(160deg,#23272e,#e23b3b);color:#fff;padding:24px;display:flex;flex-direction:column;justify-content:flex-end}
+.mega-feat img{width:100%;height:140px;object-fit:cover;border-radius:var(--r-md);margin-bottom:14px}
+
+/* STORIES */
+.story-rail{display:flex;gap:16px;overflow-x:auto;padding:18px 0;scroll-behavior:smooth}
+.story{flex:0 0 auto;width:96px;text-align:center;cursor:pointer;border:0;background:none}
+.story-ring{position:relative;width:84px;height:84px;margin:0 auto 9px;border-radius:var(--r-lg);padding:3px;background:linear-gradient(135deg,var(--c-primary),var(--c-brand));transition:.3s}
+.story.unread .story-ring{box-shadow:0 0 0 3px rgba(226,59,59,.25)}
+.story.read .story-ring{background:var(--c-line)}
+.story:hover .story-ring{transform:translateY(-5px) scale(1.06)}
+.story-ring img{width:100%;height:100%;border-radius:calc(var(--r-lg) - 3px);object-fit:cover;display:block}
+.story-label{font-size:11.5px;color:var(--c-txt2);font-weight:500}
+/* story viewer */
+.sv{position:fixed;inset:0;z-index:400;display:none;place-items:center;background:rgba(12,14,18,.92);padding:16px}
+.sv.show{display:grid}
+.sv-card{width:min(440px,94vw);background:#1c1f26;border-radius:var(--r-xl);overflow:hidden;position:relative}
+.sv-progress{display:flex;gap:4px;padding:10px 12px}
+.sv-bar{flex:1;height:3px;background:rgba(255,255,255,.25);border-radius:99px;overflow:hidden}
+.sv-bar>span{display:block;height:100%;background:#fff;width:0}
+.sv-bar.done>span{width:100%}
+.sv-img{width:100%;height:360px;object-fit:cover}
+.sv-body{padding:18px 20px 22px;color:#fff}
+.sv-nav{position:absolute;top:50%;transform:translateY(-50%);width:40px;height:40px;border-radius:50%;background:rgba(0,0,0,.4);color:#fff;display:grid;place-items:center;cursor:pointer}
+.sv-prev{right:12px}.sv-next{left:12px}
+
+/* HERO */
+.hero{position:relative;border-radius:var(--r-xl);overflow:hidden;background:linear-gradient(135deg,#1c2026 0%,#2b313a 55%,#3a414c 100%);color:#fff;padding:56px 56px;display:flex;align-items:center;gap:40px;min-height:420px}
+.hero h1{font-size:44px;font-weight:800;line-height:1.15;letter-spacing:-.5px}
+.hero p{color:rgba(255,255,255,.72);font-size:15px;max-width:440px;margin:18px 0 28px}
+.btn-primary{background:var(--c-brand);color:#fff;border-radius:var(--r-md);padding:13px 26px;font-weight:700;font-size:14px;transition:.2s;display:inline-flex;align-items:center;gap:8px}
+.btn-primary:hover{background:var(--c-primary-hover);transform:translateY(-2px)}
+.btn-ghost{border:1px solid rgba(255,255,255,.3);border-radius:var(--r-md);padding:13px 26px;font-weight:600;font-size:14px;transition:.2s}
+.btn-ghost:hover{background:rgba(255,255,255,.1)}
+.hero-visual{position:relative;width:420px;flex-shrink:0}
+.hero-visual img{border-radius:var(--r-lg);box-shadow:var(--sh-3)}
+.hero-badge{position:absolute;bottom:-18px;left:-18px;background:#fff;color:var(--c-txt);border-radius:var(--r-md);box-shadow:var(--sh-2);padding:14px 18px}
+.hero-badge2{position:absolute;top:-18px;right:-14px;background:var(--c-accent);color:#fff;border-radius:var(--r-md);box-shadow:var(--sh-2);padding:12px 16px}
+
+/* CATEGORY CARDS */
+.cat-card{position:relative;border-radius:var(--r-lg);overflow:hidden;background:var(--c-surface);border:1px solid var(--c-line);transition:.35s;box-shadow:var(--sh-1)}
+.cat-card:hover{transform:translateY(-6px);box-shadow:var(--sh-2);border-color:rgba(226,59,59,.4)}
+.cat-card .img-wrap{height:120px;overflow:hidden;background:var(--c-bg)}
+.cat-card img{width:100%;height:100%;object-fit:cover;transition:transform .7s ease}
+.cat-card:hover img{transform:scale(1.08)}
+
+/* SECTION HEAD */
+.sec-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:20px}
+.sec-title{font-size:21px;font-weight:800;letter-spacing:-.3px;display:flex;align-items:center;gap:10px}
+.sec-title::before{content:'';width:5px;height:24px;background:var(--c-brand);border-radius:99px}
+.sec-more{font-size:13px;color:var(--c-txt2);font-weight:600}
+.sec-more:hover{color:var(--c-brand)}
+.arrow-btn{width:38px;height:38px;border-radius:50%;background:var(--c-surface);box-shadow:var(--sh-1);display:grid;place-items:center;cursor:pointer;transition:.2s;border:1px solid var(--c-line)}
+.arrow-btn:hover{background:var(--c-brand);color:#fff}
+
+/* PRODUCT CARD */
+.rail{display:flex;gap:16px;overflow-x:auto;scroll-behavior:smooth;padding-bottom:10px;scroll-snap-type:x mandatory}
+.rail>.product{flex:0 0 240px;scroll-snap-align:start}
+.product{background:var(--c-surface);border:1px solid var(--c-line);border-radius:var(--r-lg);overflow:hidden;position:relative;transition:transform .35s cubic-bezier(.2,.8,.2,1),box-shadow .35s;box-shadow:var(--sh-1)}
+.product:hover{transform:translateY(-6px);box-shadow:var(--sh-2);border-color:rgba(226,59,59,.35)}
+.product .quick{opacity:0;transform:translateY(8px);transition:.26s;position:absolute;top:10px;left:10px;display:flex;flex-direction:column;gap:6px;z-index:3}
+.product:hover .quick{opacity:1;transform:none}
+.act-btn{width:34px;height:34px;border-radius:var(--r-md);background:rgba(255,255,255,.92);box-shadow:var(--sh-1);display:grid;place-items:center;transition:.18s;backdrop-filter:blur(4px)}
+.dark .act-btn{background:rgba(28,31,38,.92)}
+.act-btn:hover{background:#fff;color:var(--c-brand)}
+.act-btn.active{background:var(--c-brand);color:#fff}
+.act-btn.cmp.active{background:var(--c-accent);color:#fff}
+.p-badge{position:absolute;top:10px;right:10px;z-index:3;font-size:11px;font-weight:700;padding:4px 9px;border-radius:var(--r-pill)}
+.p-badge.sale{background:var(--c-brand);color:#fff}
+.p-badge.new{background:var(--c-accent);color:#fff}
+.p-badge.best{background:var(--c-primary);color:#fff}
+.p-badge.low{background:var(--warning);color:#fff}
+.p-img{aspect-ratio:1;background:var(--c-bg);display:grid;place-items:center;overflow:hidden}
+.p-img img{width:100%;height:100%;object-fit:cover}
+.p-body{padding:14px}
+.p-brand{font-size:11px;font-weight:600;color:var(--c-muted);text-transform:uppercase;letter-spacing:.3px}
+.p-name{font-size:13px;font-weight:500;line-height:1.45;height:38px;overflow:hidden;margin:3px 0 8px}
+.p-meta{display:flex;align-items:center;gap:8px;font-size:11.5px;color:var(--c-txt2);margin-bottom:8px}
+.stock-dot{width:7px;height:7px;border-radius:50%}
+.p-price{font-size:16px;font-weight:800;color:var(--c-brand)}
+.p-old{font-size:12px;color:var(--c-muted);text-decoration:line-through;margin-right:6px}
+.p-cart{width:100%;margin-top:10px;background:var(--c-bg);border:1px solid var(--c-line);border-radius:var(--r-md);padding:9px;font-size:12.5px;font-weight:600;transition:.2s}
+.p-cart:hover{background:var(--c-primary);color:#fff}
+.p-cart:disabled{opacity:.5;cursor:not-allowed}
+.stock-bar{height:4px;border-radius:99px;background:var(--c-line);overflow:hidden;margin-top:8px}
+.stock-bar>span{display:block;height:100%;background:linear-gradient(90deg,var(--c-primary),var(--c-brand))}
+
+/* FLASH */
+.flash{background:linear-gradient(120deg,#1c2026,#3a414c);border-radius:var(--r-xl);padding:28px 32px;color:#fff;display:flex;align-items:center;gap:28px;flex-wrap:wrap}
+.flash-clock{display:flex;gap:8px;font-variant-numeric:tabular-nums;font-weight:800;font-size:26px}
+.flash-clock span{background:rgba(0,0,0,.3);border-radius:var(--r-md);padding:6px 10px;min-width:44px;text-align:center}
+
+/* GAMING */
+.gaming{background:linear-gradient(135deg,#161a1f,#232b36);border-radius:var(--r-xl);padding:36px;color:#fff;position:relative;overflow:hidden}
+.gaming .g-card{border-radius:var(--r-lg);overflow:hidden;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);transition:.3s}
+.gaming .g-card:hover{transform:translateY(-5px);background:rgba(255,255,255,.1)}
+.gaming .g-card img{height:120px;width:100%;object-fit:cover}
+
+/* READY PC */
+.pc-card{background:var(--c-surface);border:1px solid var(--c-line);border-radius:var(--r-lg);overflow:hidden;transition:.3s;box-shadow:var(--sh-1)}
+.pc-card:hover{transform:translateY(-6px);box-shadow:var(--sh-2)}
+.pc-spec{display:flex;flex-wrap:wrap;gap:6px;margin:12px 0}
+.pc-spec span{font-size:11px;background:var(--c-bg);border-radius:var(--r-pill);padding:4px 10px;color:var(--c-txt2)}
+
+/* BRANDS */
+.brand-pill{display:flex;align-items:center;justify-content:center;height:64px;background:var(--c-surface);border:1px solid var(--c-line);border-radius:var(--r-lg);font-weight:800;font-size:16px;color:var(--c-txt2);transition:.2s;box-shadow:var(--sh-1)}
+.brand-pill:hover{border-color:var(--c-accent);color:var(--c-accent);transform:translateY(-3px)}
+
+/* TRUST */
+.trust{display:flex;gap:16px;flex-wrap:wrap}
+.trust-item{flex:1;min-width:200px;background:var(--c-surface);border:1px solid var(--c-line);border-radius:var(--r-lg);padding:22px;display:flex;gap:14px;align-items:flex-start;box-shadow:var(--sh-1)}
+.trust-ico{width:44px;height:44px;border-radius:var(--r-md);background:var(--c-brand-soft);color:var(--c-brand);display:grid;place-items:center;flex-shrink:0}
+.dark .trust-ico{background:rgba(226,59,59,.15)}
+
+/* DRAWER */
+.drawer{position:fixed;inset:0;z-index:260;display:none}
+.drawer.show{display:block}
+.drawer-bg{position:absolute;inset:0;background:rgba(0,0,0,.5)}
+.drawer-panel{position:absolute;top:0;right:0;bottom:0;width:86%;max-width:380px;background:var(--c-surface);transform:translateX(100%);transition:.3s;overflow-y:auto}
+.drawer.show .drawer-panel{transform:none}
+.dark .drawer-panel{background:#11141a}
+.acc-head{display:flex;align-items:center;justify-content:space-between;padding:15px 18px;border-bottom:1px solid var(--c-line);font-size:14.5px;font-weight:600;cursor:pointer}
+.acc-body{display:none;padding-bottom:4px;background:var(--c-bg)}
+.acc-body.open{display:block}
+.acc-body a{display:block;padding:10px 36px;font-size:13px;color:var(--c-txt2)}
+.acc-body a:hover{color:var(--c-brand)}
+
+/* COMPARE TRAY */
+.cmp-tray{position:fixed;bottom:0;right:0;left:0;z-index:250;background:var(--c-surface);border-top:1px solid var(--c-line);box-shadow:0 -10px 40px rgba(16,24,40,.12);transform:translateY(110%);transition:.35s;padding:14px}
+.cmp-tray.show{transform:none}
+.dark .cmp-tray{background:#11141a}
+
+/* MODAL */
+.modal-back{position:fixed;inset:0;background:rgba(16,20,26,.6);backdrop-filter:blur(6px);z-index:300;display:none;place-items:center;padding:16px}
+.modal-back.show{display:grid}
+.modal-card{background:var(--c-surface);border-radius:var(--r-xl);max-width:860px;width:100%;max-height:90vh;overflow:auto;box-shadow:var(--sh-3)}
+.dark .modal-card{background:#11141a}
+
+/* BOTTOM NAV */
+.bottom-nav{position:fixed;bottom:0;right:0;left:0;z-index:240;background:var(--c-surface);border-top:1px solid var(--c-line);display:none;box-shadow:0 -4px 20px rgba(16,24,40,.08)}
+.dark .bottom-nav{background:#11141a}
+.bn-item{display:flex;flex-direction:column;align-items:center;gap:3px;flex:1;padding:8px 0;font-size:10.5px;color:var(--c-txt2);transition:.2s;position:relative}
+.bn-item.active{color:var(--c-brand)}
+.bn-item.active svg{stroke:var(--c-brand)}
+@media(max-width:1023px){.bottom-nav{display:flex}.has-bottom{padding-bottom:64px}.d-head{display:none}.m-head{display:flex}}
+/* MOBILE HEADER */
+.m-head{display:none}
+.m-search{display:none}
+.m-search.open{display:block}
+
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body class="antialiased has-bottom">
+</head>
+<body class="antialiased has-bottom">
+<div id="progress"></div>
+
+<!-- ===== UTILITY BAR ===== -->
+<div class="utility">
+  <div class="container flex items-center justify-center gap-x-3 gap-y-1 flex-wrap py-2">
+    <span>ارسال سریع به سراسر کشور</span><span class="opacity-30">|</span>
+    <span>ضمانت اصالت کالا</span><span class="opacity-30">|</span>
+    <span>۷ روز ضمانت بازگشت</span><span class="opacity-30">|</span>
+    <span class="font-semibold text-white">پشتیبانی تخصصی ۲۴ ساعته</span>
+  </div>
+</div>
+
+<!-- ===== DESKTOP HEADER ===== -->
+<header class="head-main d-head">
+  <div class="container flex items-center gap-4" style="height:74px">
+    <a href="#" class="flex items-center gap-2.5 shrink-0">
+      <svg viewBox="0 0 56 56" fill="none" width="42" height="42"><rect x="4" y="4" width="48" height="48" rx="13" fill="#23272e"/><path d="M28 14l12 7v14l-12 7-12-7V21l12-7Z" stroke="#fff" stroke-width="2.4" fill="none" stroke-linejoin="round"/><circle cx="28" cy="28" r="5.5" fill="#e23b3b"/></svg>
+      <span class="font-extrabold text-[20px] tracking-tight">فر<span class="text-brand">تاک</span></span>
+    </a>
+    <div class="search-wrap">
+      <input id="search" type="text" placeholder="جستجو در محصولات، برندها و دسته‌بندی‌ها..." aria-label="جستجو" autocomplete="off" class="search-input"/>
+      <svg class="w-5 h-5 absolute right-4 top-1/2 -translate-y-1/2 text-txt2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7" stroke-width="2"/><path stroke-width="2" stroke-linecap="round" d="m20 20-3.5-3.5"/></svg>
+      <button id="searchClear" class="search-clear" aria-label="پاک کردن"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-width="2" d="M6 6l12 12M18 6 6 18"/></svg></button>
+      <div id="sug" class="search-panel" aria-live="polite"></div>
+    </div>
+    <div class="flex items-center gap-0.5 shrink-0">
+      <a href="#" class="hidden xl:flex items-center gap-1 text-[13px] font-medium px-2.5 h-9 rounded-md hover:bg-bg transition">ورود</a>
+      <button class="icon-btn" onclick="openDrawer('wish')" aria-label="علاقه‌مندی"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-width="1.8" d="M12 20s-7-4.3-7-9.5A3.5 3.5 0 0 1 12 7a3.5 3.5 0 0 1 7 3.5C19 15.7 12 20 12 20Z"/></svg><span id="wishCount" class="badge-count hidden">۰</span></button>
+      <button class="icon-btn" onclick="toggleCompareTray()" aria-label="مقایسه"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-width="1.8" d="M8 3v14M8 3 5 6m3-3 3 3M16 21V7m0 14 3-3m-3 3-3-3"/></svg><span id="cmpCount" class="badge-count accent hidden">۰</span></button>
+      <a href="#" class="icon-btn relative" aria-label="سبد خرید"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-width="1.8" d="M3 4h2l2.2 11.2a1.5 1.5 0 0 0 1.5 1.2h8.6a1.5 1.5 0 0 0 1.5-1.2L21 8H6.2"/><circle cx="9.5" cy="20" r="1.4" fill="currentColor"/><circle cx="17.5" cy="20" r="1.4" fill="currentColor"/></svg><span class="badge-count">۰</span></a>
+      <button id="themeBtn" class="icon-btn hidden lg:grid" aria-label="تم"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-width="1.8" d="M21 12.8A9 9 0 1 1 11.2 3 7 7 0 0 0 21 12.8Z"/></svg></button>
+    </div>
+  </div>
+  <nav class="navbar">
+    <div class="container">
+      <ul class="flex gap-0.5 text-[13.5px] h-[50px] items-center overflow-x-auto hide-scroll" id="navList"></ul>
+    </div>
+  </nav>
+</header>
+
+<!-- ===== MOBILE HEADER ===== -->
+<header class="head-main m-head">
+  <div class="flex items-center gap-2 px-3" style="height:58px">
+    <button class="icon-btn" onclick="openDrawer('cat')" aria-label="منو"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg></button>
+    <a href="#" class="flex items-center gap-2 flex-1 justify-center"><svg viewBox="0 0 56 56" fill="none" width="30" height="30"><rect x="4" y="4" width="48" height="48" rx="13" fill="#23272e"/><path d="M28 14l12 7v14l-12 7-12-7V21l12-7Z" stroke="#fff" stroke-width="2.4" fill="none" stroke-linejoin="round"/><circle cx="28" cy="28" r="5.5" fill="#e23b3b"/></svg><span class="font-extrabold text-[18px]">فر<span class="text-brand">تاک</span></span></a>
+    <button class="icon-btn" onclick="toggleMobileSearch()" aria-label="جستجو"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7" stroke-width="2"/><path stroke-width="2" stroke-linecap="round" d="m20 20-3.5-3.5"/></svg></button>
+    <a href="#" class="icon-btn relative" aria-label="سبد"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-width="1.8" d="M3 4h2l2.2 11.2h8.6L21 8H6.2"/><circle cx="9.5" cy="20" r="1.4" fill="currentColor"/><circle cx="17.5" cy="20" r="1.4" fill="currentColor"/></svg><span class="badge-count">۰</span></a>
+  </div>
+  <div class="m-search px-3 pb-3"><input id="mSearch" type="text" placeholder="جستجو در فرتاک..." aria-label="جستجوی موبایل" class="search-input"/><div id="mSug" class="search-panel mt-2" style="position:static;display:none"></div></div>
+</header>
+
+<!-- ===== STORIES ===== -->
+<section class="container"><div class="story-rail" id="storyStrip"></div></section>
+
+<!-- ===== HERO ===== -->
+<section class="container" style="margin-top:24px">
+  <div class="hero" id="hero">
+    <div class="flex-1 relative z-10">
+      <span class="inline-block text-[12px] font-semibold bg-white/10 text-red-100 px-3 py-1 rounded-pill mb-4">مشاوره تخصصی قطعات</span>
+      <h1>سیستم بعدی‌ات را هوشمندانه بساز</h1>
+      <p>از انتخاب قطعه تا اسمبل نهایی، قطعات حرفه‌ای و مشاوره تخصصی را یکجا در اختیار داشته باش.</p>
+      <div class="flex gap-3 flex-wrap">
+        <a href="#best" class="btn-primary">مشاهده محصولات</a>
+        <a href="#builder" class="btn-ghost">شروع اسمبل</a>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <img src="assets/img/hero_laptop.jpg" alt="سیستم گیمینگ فرتاک" id="heroImg"/>
+      <div class="hero-badge"><p class="text-[11px] text-txt2">تا ۳۰٪ تخفیف</p><p class="text-[22px] font-extrabold text-brand">اسمبل آنلاین</p></div>
+      <div class="hero-badge2"><p class="text-[11px] opacity-80">ارسال</p><p class="text-[15px] font-bold">فوری</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== VISUAL CATEGORIES ===== -->
+<section class="container" style="margin-top:var(--s-section)">
+  <div class="sec-head"><h2 class="sec-title">دنبال چی می‌گردی؟</h2><a href="#" class="sec-more">مشاهده همه</a></div>
+  <div class="grid grid-cols-3 sm:grid-cols-5 lg:grid-cols-10 gap-3" id="catGrid"></div>
+</section>
+
+<!-- ===== FLASH SALE ===== -->
+<section class="container" style="margin-top:var(--s-section)">
+  <div class="flash reveal">
+    <div class="flex items-center gap-4"><span class="w-14 h-14 rounded-lg bg-white/15 grid place-items-center"><svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-width="2" stroke-linecap="round" d="M13 2 4 14h7l-1 8 9-12h-7l1-8Z"/></svg></span><div><h3 class="text-xl font-extrabold">پیشنهاد ویژه</h3><p class="text-[12.5px] text-white/80">تا پایان زمان نمایش</p></div></div>
+    <div class="flash-clock"><span id="cd-h">۰۲</span>:<span id="cd-m">۱۵</span>:<span id="cd-s">هایی</span></div>
+    <div class="flex-1 min-w-[200px]"><div class="flex justify-between text-[12px] mb-1.5"><span>فروش رفته</span><span>۷۸٪</span></div><div class="stock-bar"><span style="width:78%"></span></div></div>
+    <a href="#best" class="btn-primary" style="background:#fff;color:var(--c-primary)">مشاهده همه</a>
+  </div>
+</section>
+
+<!-- ===== BEST SELLERS ===== -->
+<section class="container" style="margin-top:var(--s-section)" id="best">
+  <div class="sec-head"><h2 class="sec-title">پرفروش‌ترین‌ها</h2><div class="flex items-center gap-2"><button class="arrow-btn" onclick="scrollRow('best-row',-1)">▶</button><button class="arrow-btn" onclick="scrollRow('best-row',1)">◀</button></div></div>
+  <div class="rail" id="best-row"></div>
+</section>
+
+<!-- ===== GAMING ===== -->
+<section class="container" style="margin-top:var(--s-section)">
+  <div class="gaming reveal">
+    <div class="sec-head"><h2 class="sec-title" style="color:#fff">دنیای گیمینگ</h2><a href="#" class="sec-more" style="color:#9fb0c8">ورود به دنیای گیمینگ</a></div>
+    <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3" id="gamingGrid"></div>
+  </div>
+</section>
+
+<!-- ===== READY-BUILT PCs ===== -->
+<section class="container" id="builder" style="margin-top:var(--s-section)">
+  <div class="sec-head"><h2 class="sec-title">سیستم‌های آماده</h2><a href="#" class="sec-more">مشاهده همه</a></div>
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4" id="pcGrid"></div>
+</section>
+
+<!-- ===== NEW ARRIVALS ===== -->
+<section class="container" style="margin-top:var(--s-section)">
+  <div class="sec-head"><h2 class="sec-title">جدیدترین محصولات</h2><div class="flex items-center gap-2"><button class="arrow-btn" onclick="scrollRow('new-row',-1)">▶</button><button class="arrow-btn" onclick="scrollRow('new-row',1)">◀</button></div></div>
+  <div class="rail" id="new-row"></div>
+</section>
+
+<!-- ===== BRANDS ===== -->
+<section class="container" style="margin-top:var(--s-section)">
+  <div class="sec-head"><h2 class="sec-title">برندهای محبوب</h2></div>
+  <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3" id="brandGrid"></div>
+</section>
+
+<!-- ===== TRUST ===== -->
+<section class="container" style="margin-top:var(--s-section)">
+  <div class="trust" id="trustGrid"></div>
+</section>
+
+<!-- ===== RECENTLY VIEWED ===== -->
+<section class="container" id="recently" style="margin-top:var(--s-section);display:none">
+  <div class="sec-head"><h2 class="sec-title">بازدیدهای اخیر</h2></div>
+  <div class="rail" id="recent-row"></div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer class="bg-ink text-gray-300 text-[13px]" style="margin-top:var(--s-section)">
+  <div class="container py-12 grid grid-cols-2 md:grid-cols-4 gap-8">
+    <div><div class="flex items-center gap-2 mb-4"><svg viewBox="0 0 56 56" fill="none" width="32" height="32"><rect x="4" y="4" width="48" height="48" rx="13" fill="#e23b3b"/><path d="M28 14l12 7v14l-12 7-12-7V21l12-7Z" stroke="#fff" stroke-width="2.4" fill="none" stroke-linejoin="round"/><circle cx="28" cy="28" r="5.5" fill="#fff"/></svg><span class="font-extrabold text-white text-[17px]">فرتاک</span></div><p class="text-gray-400 leading-7 text-[12.5px]">فروشگاه تخصصی قطعات کامپیوتر، لپ‌تاپ و لوازم جانبی با گارانتی معتبر و مشاوره تخصصی.</p></div>
+    <div><h4 class="text-white font-bold mb-4 text-[14px]">راهنمای خرید</h4><ul class="space-y-2 text-[12.5px] text-gray-400"><li><a href="#" class="hover:text-brand transition">نحوه ثبت سفارش</a></li><li><a href="#" class="hover:text-brand transition">رویه ارسال</a></li><li><a href="#" class="hover:text-brand transition">شرایط بازگشت</a></li><li><a href="#" class="hover:text-brand transition">سوالات متداول</a></li></ul></div>
+    <div><h4 class="text-white font-bold mb-4 text-[14px]">خدمات مشتریان</h4><ul class="space-y-2 text-[12.5px] text-gray-400"><li><a href="#" class="hover:text-brand transition">پیگیری سفارش</a></li><li><a href="#" class="hover:text-brand transition">گارانتی</a></li><li><a href="#" class="hover:text-brand transition">تماس با ما</a></li><li><a href="#" class="hover:text-brand transition">نمایندگی‌ها</a></li></ul></div>
+    <div><h4 class="text-white font-bold mb-4 text-[14px]">درباره فرتاک</h4><p class="text-gray-400 text-[12.5px] leading-7">[اطلاعات تماس واقعی متعاقباً تکمیل می‌شود]<br/>پشتیبانی ۲۴ ساعته</p><p class="text-gray-500 text-[12px] mt-4">اینستاگرام · تلگرام · آپارات</p></div>
+  </div>
+  <div class="border-t border-white/10 text-center text-gray-500 text-[12px] py-5">© ۱۴۰۴ فرتاک — تمامی حقوق محفوظ است. [نمونه اولیه]</div>
+</footer>
+
+<!-- ===== MOBILE BOTTOM NAV ===== -->
+<div class="bottom-nav">
+  <a href="#" class="bn-item active"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-width="1.8" d="M4 5h16v14H4zM2 19h20"/></svg>خانه</a>
+  <button onclick="openDrawer('cat')" class="bn-item"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-width="1.8" d="M4 6h16M4 12h16M4 18h16"/></svg>دسته‌بندی</button>
+  <button onclick="toggleMobileSearch()" class="bn-item"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7" stroke-width="1.8"/><path stroke-width="1.8" d="m20 20-3.5-3.5"/></svg>جستجو</button>
+  <button onclick="openDrawer('wish')" class="bn-item"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-width="1.8" d="M12 20s-7-4.3-7-9.5A3.5 3.5 0 0 1 12 7a3.5 3.5 0 0 1 7 3.5C19 15.7 12 20 12 20Z"/></svg>علاقه‌مندی</button>
+  <a href="#" class="bn-item"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-width="1.8" d="M3 4h2l2.2 11.2h8.6L21 8H6.2"/><circle cx="9.5" cy="20" r="1.4" fill="currentColor"/><circle cx="17.5" cy="20" r="1.4" fill="currentColor"/></svg>سبد</a>
+</div>
+
+<!-- ===== DRAWERS ===== -->
+<div class="drawer" id="drawer"><div class="drawer-bg" onclick="closeDrawer()"></div><div class="drawer-panel p-4" id="drawerPanel"></div></div>
+
+<!-- ===== COMPARE TRAY ===== -->
+<div class="cmp-tray" id="compareTray">
+  <div class="container flex items-center gap-3 flex-wrap">
+    <span class="font-bold text-[13px]">مقایسه (<span id="cmpN">۰</span>)</span>
+    <div id="cmpItems" class="flex gap-2 flex-1 overflow-x-auto"></div>
+    <button onclick="clearCompare()" class="text-[12px] text-txt2 hover:text-brand px-3">پاک کردن</button>
+    <button onclick="openCompare()" class="bg-ink text-white rounded-md px-5 py-2 text-[13px] font-semibold hover:bg-brand transition">مشاهده مقایسه</button>
+  </div>
+</div>
+
+<!-- ===== STORY VIEWER ===== -->
+<div class="sv" id="sv"><div class="sv-card" id="svCard"></div></div>
+
+<!-- ===== QUICK VIEW MODAL ===== -->
+<div class="modal-back" id="qvBack"><div class="modal-card" id="qvCard"></div></div>
+
+<script src="data.js"></script>
+<script src="app-v9.js"></script>
+</body>
+</html>
